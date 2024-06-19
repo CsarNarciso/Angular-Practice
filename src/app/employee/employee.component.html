@@ -24,7 +24,7 @@
 
     <li *ngFor="let employee of employees; let i=index">
 
-        Employee {{i + 1}}: {{employee.name}} - {{employee.salary}}$
+        Employee {{i + 1}}: {{employee.name}} - <span [ngClass]="{highSalary: employee.salary > 1000}">{{employee.salary}}$</span> 
     </li>
 </ul>
 
