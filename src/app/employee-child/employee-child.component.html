@@ -1,12 +1,18 @@
 <ul >
     <li>
         Employee {{i + 1}}: {{employee.name}} - <span [ngClass]="{highSalary: employee.salary > 1000}">{{employee.salary}}$</span> 
+        
+        <br>
+
+        <div [ngStyle]="{color: receivedData == 'Hello World!' ? 'blue' : 'black'}">   
+            {{receivedData}}
+        </div>
+
+        <br>
+
+        <input type="text" placeholder="Feature" #message>
+        <Button class="btn btn-primary" (click)="sendDataToParent(message.value)" [ngClass]="{sentDataButton: sent}">Add Feature!</Button>
     </li>
 </ul>
-
-<br>
-
-<input type="text" placeholder="Message to parent" #message>
-<Button (click)="sendDataToParent(message.value)" style="color: red" [ngClass]="{sentDataButton: sent}">Send something to Parent!</Button>
 
 

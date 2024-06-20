@@ -2,6 +2,8 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { EmployeeChildComponent } from "../employee-child/employee-child.component";
+import { EmployeeService } from "./employee-create.service";
+import { ShowWindowService } from "./Show-window.service";
 
 @Component({
     selector: "app-employee",
@@ -14,29 +16,22 @@ import { EmployeeChildComponent } from "../employee-child/employee-child.compone
 
 export class EmployeeComponent {
 
-    private _employees: Employee[];
 
-    constructor(){
+    constructor(private employeeService: EmployeeService, private windowService: ShowWindowService){}
 
-        this._employees = [];
-    }
 
     createEmployee(name: string, salary: number): void{
 
-        this._employees.push(
+        this.windowService.showWindow("Employee " + name + " created")
 
-            new Employee(name, salary)
-        );
-
-        alert(this._employees);
-    }
-
-    get employees(): Employee[]{
-
-        return this._employees;
+        this.employeeService.create(new Employee(name, salary));
     }
 
 
+    get employees(): Employee[] {
+
+        return this.employeeService.employees;
+    }
 
 
     //Sharing data beetwen components lesson
