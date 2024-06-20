@@ -20,11 +20,15 @@
 
 <br><br><br>
 
-<ul *ngIf="employees.length > 0">
 
-    <li *ngFor="let employee of employees; let i=index">
+<div 
+    style="text-align: center;" 
+    [ngStyle]="{color: receivedData == 'Hello World!' ? 'orange' : 'pink'}"
+    *ngIf="employees.length > 0">
 
-        Employee {{i + 1}}: {{employee.name}} - <span [ngClass]="{highSalary: employee.salary > 1000}">{{employee.salary}}$</span> 
-    </li>
-</ul>
+        <app-employee-child *ngFor="let _employee of employees; let _i=index" [employee]=_employee [i]=_i (sendToParentEvent)="receiveDataFromChild($event)"></app-employee-child>
 
+        <br>
+        
+        {{receivedData}}
+</div>
