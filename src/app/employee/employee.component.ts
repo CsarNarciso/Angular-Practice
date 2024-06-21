@@ -2,8 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { EmployeeChildComponent } from "../employee-child/employee-child.component";
-import { EmployeeService } from "./employee-create.service";
-import { ShowWindowService } from "./Show-window.service";
+import { EmployeeService } from "./employee.service";
 
 @Component({
     selector: "app-employee",
@@ -17,12 +16,10 @@ import { ShowWindowService } from "./Show-window.service";
 export class EmployeeComponent {
 
 
-    constructor(private employeeService: EmployeeService, private windowService: ShowWindowService){}
+    constructor(private employeeService: EmployeeService){}
 
 
     createEmployee(name: string, salary: number): void{
-
-        this.windowService.showWindow("Employee " + name + " created")
 
         this.employeeService.create(new Employee(name, salary));
     }
