@@ -4,14 +4,13 @@
         
         <br>
 
-        <div [ngStyle]="{color: receivedData == 'Hello World!' ? 'blue' : 'black'}">   
-            {{receivedData}}
+        <div *ngFor="let characteristic of characteristics" [ngStyle]="{color: characteristic == 'Hello World!' ? 'green' : 'black'}">   
+            {{characteristic}}
         </div>
 
         <br>
 
-        <input type="text" placeholder="Feature" #message>
-        <Button class="btn btn-primary" (click)="sendDataToParent(message.value)" [ngClass]="{sentDataButton: sent}">Add Feature!</Button>
+        <app-employee-characteristics (sendCharacteristicToParentEvent)="receiveCharacteristicFromChild($event)"></app-employee-characteristics>
     </li>
 </ul>
 

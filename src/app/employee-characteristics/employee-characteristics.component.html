@@ -1,0 +1,3 @@
+<input type="text" placeholder="Characteristic" #characteristic>
+<Button class="btn btn-primary" (click)="sendCharacteristicToParent(characteristic.value)" [ngClass]="{sentCharacteristicButton: sent}">Add Characteristic!</Button>
+

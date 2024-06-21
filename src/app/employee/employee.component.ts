@@ -32,15 +32,6 @@ export class EmployeeComponent {
 
         return this.employeeService.employees;
     }
-
-
-    //Sharing data beetwen components lesson
-    receivedData: string = "";
-
-    receiveDataFromChild(message: string): void{
-
-        this.receivedData = message;
-    }
 }
 
 
