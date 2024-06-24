@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ShowWindowService } from '../employee/Show-window.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -16,12 +15,10 @@ export class EmployeeCharacteristicsComponent {
 
   sent: boolean = false;
 
-  constructor(private windowService: ShowWindowService){}
+  constructor(){}
 
 
   sendCharacteristicToParent(characteristic: string): void{
-
-    this.windowService.showWindow("Characteristic " + characteristic + " sent to client")
 
     this.sendCharacteristicToParentEvent.emit(characteristic);
   }
