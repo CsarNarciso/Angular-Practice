@@ -1,6 +1,6 @@
 <ul >
     <li>
-        Employee {{id + 1}}: {{employee.name}} - <span [ngClass]="{highSalary: employee.salary > 1000}">{{employee.salary}}$</span> 
+        Employee {{id + 1}}: {{employee._name}} - <span [ngClass]="{highSalary: employee._salary > 1000}">{{employee._salary}}$</span> 
         
         <a style="color: blue" [routerLink]="['update/', id]" [queryParams]="{action: 'Update'}">Update</a>
         <a style="color: red" [routerLink]="['update/', id]" [queryParams]="{action: 'Delete'}">Delete</a>

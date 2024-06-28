@@ -3,11 +3,12 @@ import { Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { EmployeeChildComponent } from "../employee-child/employee-child.component";
 import { EmployeeService } from "./employee.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
     selector: "app-employee",
     standalone: true,
-    imports: [FormsModule, CommonModule,EmployeeChildComponent,],
+    imports: [FormsModule, CommonModule,EmployeeChildComponent, HttpClientModule, ],
     templateUrl: "./employee.component.html",
     styleUrl: "./employee.component.css"
 })
@@ -16,7 +17,10 @@ import { EmployeeService } from "./employee.service";
 export class EmployeeComponent {
 
 
-    constructor(private employeeService: EmployeeService){}
+    constructor(private employeeService: EmployeeService){
+
+        this.employeeService.loadEmployees();
+    }
 
 
     createEmployee(name: string, salary: number): void{
@@ -25,7 +29,7 @@ export class EmployeeComponent {
     }
 
 
-    get employees(): Employee[] {
+    get employees(): IEmployee[] {
 
         return this.employeeService.employees;
     }
@@ -33,6 +37,11 @@ export class EmployeeComponent {
 
 
 
+export interface IEmployee {
+
+    _name: string;
+    _salary: number;
+}
 
 
 
@@ -40,32 +49,36 @@ export class EmployeeComponent {
 
 export class Employee {
 
-    private _name: string;
-    private _salary: number;
-
-    constructor(name?: string, salary?: number){
-
-        this._name = name != null ? name : "";
-        this._salary = salary != null ? salary : 0;
+    constructor(name?: string, salary?: number) {
+        this._name = (name != null) ? name : ""; 
+        this._salary = (salary != null) ? salary : 0;
     }
 
-    get name(): string{
+
+
+
+    get name(): string {
 
         return this._name;
     }
 
-    set name(name: string){
+    set name(name: string) {
 
         this._name = name;
     }
 
-    get salary(): number{
+    get salary(): number {
 
         return this._salary;
     }
 
-    set salary(salary: number){
+    set salary(salary: number) {
 
         this._salary = salary;
     }
+
+
+
+    _name: string;
+    _salary: number;
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { EmployeeService } from '../employee/employee.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Employee } from '../employee/employee.component';
+import { DataBaseService } from '../database.service';
 
 @Component({
   selector: 'app-projects',
@@ -14,7 +15,7 @@ import { Employee } from '../employee/employee.component';
 })
 export class UpdateComponent {
 
-  constructor(private employeeService: EmployeeService, private router: Router, private request: ActivatedRoute){
+  constructor(private employeeService: EmployeeService, private databaseService: DataBaseService, private router: Router, private request: ActivatedRoute){
 
     this.request.queryParams.subscribe(params => {
       this.action = params['action']
@@ -25,6 +26,7 @@ export class UpdateComponent {
   update(){
 
     this.employeeService.employees[this.id] = new Employee(this.name, this.salary);
+    this.databaseService.saveEmployees(this.employeeService.employees);
     this.router.navigate(['']);
   }
 
@@ -32,12 +34,13 @@ export class UpdateComponent {
 
     this.employeeService.employees.splice(this.id, 1);
     this.employeeService.deleteCharacteristic(this.id);
+    this.databaseService.saveEmployees(this.employeeService.employees);
     this.router.navigate(['']);
   }
 
 
   action: string = "";
   id: number = this.request.snapshot.params['id'];
-  name: string = this.employeeService.employees[this.id].name;
-  salary: number = this.employeeService.employees[this.id].salary;
+  name: string = this.employeeService.employees[this.id]._name;
+  salary: number = this.employeeService.employees[this.id]._salary;
 }

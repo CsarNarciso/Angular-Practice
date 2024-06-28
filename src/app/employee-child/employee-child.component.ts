@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Employee } from '../employee/employee.component';
+import { Employee, IEmployee } from '../employee/employee.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EmployeeCharacteristicsComponent } from '../employee-characteristics/employee-characteristics.component';
@@ -16,7 +16,7 @@ import { ShowWindowService } from '../employee/Show-window.service';
 })
 export class EmployeeChildComponent {
 
-  @Input() employee: Employee = new Employee();
+  @Input() employee:IEmployee = new Employee();
   @Input() id:number = 0;
 
 
